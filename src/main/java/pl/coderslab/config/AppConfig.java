@@ -1,5 +1,6 @@
 package pl.coderslab.config;
 
+import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -24,6 +25,13 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 
     @Bean
     public DataSource dataSource() {
-        return new DriverManagerDataSource("jdbc:mysql://localhost:3306/books_workshop5?useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8", "root", "coderslab");
+       // return new DriverManagerDataSource("jdbc:mysql://localhost:3306/books_workshop5?useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8", "root", "coderslab");
+
+        final BasicDataSource dataSource = new BasicDataSource();
+        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/books_workshop5?useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8");
+        dataSource.setUsername("root");
+        dataSource.setPassword("coderslab");
+        return dataSource;
     }
 }

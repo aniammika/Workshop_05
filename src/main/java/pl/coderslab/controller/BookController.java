@@ -16,7 +16,7 @@ public class BookController {
     private final BookService bookService;
 
     @Autowired
-    public BookController(final  BookService bookService){
+    public BookController(final BookService bookService) {
         this.bookService = bookService;
     }
 
@@ -41,12 +41,12 @@ public class BookController {
     }
 
     @DeleteMapping(path = "/{id:\\d+}")
-    public String deleteBook(@PathVariable("id") final long id){
+    public String deleteBook(@PathVariable("id") final long id) {
         return null;
     }
 
     @ExceptionHandler
-    public void handleBookNotFoundException(final BookNotFoundException e, HttpServletResponse response){
+    public void handleBookNotFoundException(final BookNotFoundException e, HttpServletResponse response) {
         System.out.println("Poleciał wyjątek: " + e);
     }
 }
